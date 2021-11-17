@@ -9,9 +9,69 @@ h1 {
     margin: 100px auto;
 }
 
+
+/* setting up the basic sections */
 #gameSection {
     background-color: hsl(60, 56%, 25%);
-    width: 900px;
-    height: 400px;
+    width: 800px;
+    height: 300px;
     margin: auto;
+    display: flex;
+    border-radius: 10px;
 }
+
+.player {
+    background-color: hsl(60, 56%, 71%);
+    width: 200px;
+    height: 280px;
+    margin: 10px 10px;
+}
+
+#gameboard {
+    width: 360px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+
+
+.move {
+    background-color: hsl(60, 56%, 80%);
+    width: 120px;
+    height: 100px;
+}
+
+
+/* drawing four bars over the board  */
+.barH {
+    position: absolute;
+    top: 95px;
+    left: 20px;
+    background-color: hsl(60, 56%, 25%);
+    width: 320px;
+    height: 10px;
+    border-radius: 5px;
+
+}
+
+#barTwo {
+    top: 195px;
+}
+
+.barV {
+    position: absolute;
+    top: 20px;
+    left: 115px;
+    background-color: hsl(60, 56%, 25%);
+    width: 10px;
+    height: 260px;
+    border-radius: 5px;
+}
+
+#barFour {
+    left: 235px;
+}
+
+

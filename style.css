@@ -1,0 +1,17 @@
+body {
+    background-color: hsl(60, 56%, 91%);
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+h1 {
+    color: hsl(60, 56%, 25%);
+    text-align: center;
+    margin: 100px auto;
+}
+
+#gameSection {
+    background-color: hsl(60, 56%, 25%);
+    width: 900px;
+    height: 400px;
+    margin: auto;
+}

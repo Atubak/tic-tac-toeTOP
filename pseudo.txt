@@ -1,0 +1,39 @@
+tic tac toe pseudocode
+
+
+
+module 'Gameboard'
+    
+    _object 'gameboard'
+        array 'gameboard' : [null, null, null, null, null, null, null, null, null]9x
+
+        initfunction
+            call cacheDOMfunction
+            call bindEventsfunction
+            call renderfunction
+    endobject
+
+    _cacheDOMfunction, connect the elements in the html to the js
+
+    _bindEventsfunction, adding events to listen to
+
+    _renderfunction, push the current state of js to the DOM 
+
+    _checkwinfunction, after every move check if one of the winning combos has been  hit, if it's hit, call gameoverfunction
+
+    _gameoverfunction, announce a winner and present a button to play again
+
+    makemovefunction, puts a x or o in one of the 9 arraypositions
+
+endmodule
+
+
+
+playerfactory
+    name
+    setnamefunction, sets the name value of a playerobject
+    symbol
+    movefunction, make sure to include the symbol x or o 
+
+end playerfactory
+

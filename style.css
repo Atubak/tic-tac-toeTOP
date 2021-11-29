@@ -75,3 +75,14 @@ h1 {
 }
 
 
+
+
+
+/* make up for the x's & o's */
+ 
+.move {
+    font-size: 50px;
+    text-align: center;
+    line-height: 200%;
+} 
+

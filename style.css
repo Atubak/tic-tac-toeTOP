@@ -84,5 +84,6 @@ h1 {
     font-size: 50px;
     text-align: center;
     line-height: 200%;
+    user-select: none;
 } 
 

@@ -7,15 +7,11 @@ module 'Gameboard'
     _object 'gameboard'
         array 'gameboard' : [null, null, null, null, null, null, null, null, null]9x
 
-        initfunction
-            call cacheDOMfunction
-            call bindEventsfunction
-            call renderfunction
     endobject
 
-    _cacheDOMfunction, connect the elements in the html to the js
+    _cacheDOM, connect the elements in the html to the js
 
-    _bindEventsfunction, adding events to listen to
+    _bindEvents, adding events to listen to
 
     _renderfunction, push the current state of js to the DOM 
 

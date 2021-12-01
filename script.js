@@ -4,16 +4,17 @@
 const gameBoard = (function() {
 
     const gameBoard = {
-        gameBoard: []
+        gameBoardArray: []
     };
 
     let moveTally = 1
 
     // cacheDOM
     let gameBoardDiv = document.querySelector('#gameboard');
-    let player1 = document.querySelector('#player1');
-    let player2 = document.querySelector('#player2');
+    let player1Div = document.querySelector('#player1');
+    let player2Div = document.querySelector('#player2');
     let moveBoxes = document.querySelectorAll('.move');
+    let winMessage = document.querySelector('#winMessage');
 
     // events
     gameBoardDiv.addEventListener("click", _doMove);
@@ -29,7 +30,7 @@ const gameBoard = (function() {
         
         if (clickedBox.textContent) return;
         
-        gameBoard.gameBoard[clickedBox.id] = moveSymbol;
+        gameBoard.gameBoardArray[clickedBox.id] = moveSymbol;
         moveTally++;
 
         _render();
@@ -38,12 +39,15 @@ const gameBoard = (function() {
 
 
     function _render() {
-        for (let i = 0; i <= 9; i++) {
-            moveBoxes[i].textContent = gameBoard.gameBoard[i];
+        for (let i = 0; i < 9; i++) {
+            moveBoxes[i].textContent = gameBoard.gameBoardArray[i];
         };
     };
 
+
     function _checkWin() {
+        let player1Win = ['❌','❌','❌'];
+        let player2Win = ['⭕','⭕','⭕'];
         let winningCombos = [
             [0,1,2],
             [3,4,5],
@@ -54,14 +58,35 @@ const gameBoard = (function() {
             [0,4,8],
             [2,4,6]
         ];
-        console.log(winningCombos);
 
-        // for (let i = 0; i < 9; i++) {
-        //     let currentWinningCombo = winningCombos[i];
-        //     console.log(currentWinningCombo);
-        //     // for (let i = 0; i < 4; i++) {
-        //     // }
-        // };
+        winningCombos.forEach((currentCombo) => {
+            let currentCheck = [];
+
+            currentCombo.forEach((curComPosition) => {
+                currentCheck.push(gameBoard.gameBoardArray[curComPosition])
+            });
+            
+            // Can't seem to make it console log here
+            if (player1Win.toString() === currentCheck.toString()) {
+                _gameOver('player1');
+            };
+            if (player2Win.toString() === currentCheck.toString()) {
+                _gameOver('player2')
+            };
+        });
+
+        
+    };
+
+
+    function _gameOver(winner) {
+        gameBoardDiv.removeEventListener("click", _doMove);
+
+        winMessage.className = 'show';
+        winMessage.textContent = `${winner} Wins!!!`;
+
+        console.log(`${winner} Wins!!!`);
+        // logic to put some gameover message over the gameboard 
     };
 
 })();

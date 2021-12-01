@@ -87,3 +87,20 @@ h1 {
     user-select: none;
 } 
 
+
+/* win message */
+#winMessage {
+    display: none;
+    position: absolute;
+    height: 300px;
+    width: 360px;
+}
+
+#winMessage.show {
+    display: block;
+    background-color: rgba(245, 245, 219, 0.9);
+    color: hsl(60, 56%, 25%);
+    font-size: 80px;
+    text-align: center;
+    line-height: 150%;
+}

@@ -1,4 +1,23 @@
-// let gameboard = [null, null, null, null, null, null, null, null, null];
+const playerFactory = (name, symbol, playerDesignation) => { 
+    //playerDesignation is supposed to connect the player object to either player1 or player2
+    return { name, playerDesignation, timesWon: 0, };
+};
+
+
+const playerSelectScreen = (function() {
+    
+    // variables
+
+    // cacheDOM
+
+    // events
+
+    // functions
+    
+
+})();
+
+
 
 
 const gameBoard = (function() {
@@ -8,17 +27,19 @@ const gameBoard = (function() {
     };
 
     let moveTally = 1
-
+    
     // cacheDOM
     let gameBoardDiv = document.querySelector('#gameboard');
     let player1Div = document.querySelector('#player1');
     let player2Div = document.querySelector('#player2');
     let moveBoxes = document.querySelectorAll('.move');
     let winMessage = document.querySelector('#winMessage');
-
+    let replayButton = document.querySelector('#replay');
+    
     // events
     gameBoardDiv.addEventListener("click", _doMove);
-
+    replayButton.addEventListener("click", _resetGame);
+    
     // functions
     function _doMove(e) {
         let moveSymbol = '❌';
@@ -82,11 +103,28 @@ const gameBoard = (function() {
 
     function _gameOver(winner) {
         gameBoardDiv.removeEventListener("click", _doMove);
+
+        const winP = document.createElement('p');
+
+        // PRINTS 'ITS A TIE' 8 TIMES FOR SOME REASON
+        
+        if (winner == 'tie') {
+
+            winP.innerHTML = `It's a <br> Tie!`;
+            winMessage.insertBefore(winP, replayButton);
+            winMessage.className = 'show';
+        };
+
+        winP.innerHTML = `${winner} <br> Wins!!!`;
+        winMessage.insertBefore(winP, replayButton);
         winMessage.className = 'show';
 
-        if (winner == 'tie') return winMessage.innerHTML = `It's a <br> Tie!`;
+    };
 
-        winMessage.innerHTML = `${winner} <br> Wins!!!`;
+
+    function _resetGame () {
+        winMessage.className = '';
+
     };
 
 })();

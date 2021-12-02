@@ -66,7 +66,8 @@ const gameBoard = (function() {
                 currentCheck.push(gameBoard.gameBoardArray[curComPosition])
             });
             
-            // Can't seem to make it console log here
+            if (moveTally == 10) return _gameOver('tie');
+
             if (player1Win.toString() === currentCheck.toString()) {
                 _gameOver('player1');
             };
@@ -81,12 +82,13 @@ const gameBoard = (function() {
 
     function _gameOver(winner) {
         gameBoardDiv.removeEventListener("click", _doMove);
-
         winMessage.className = 'show';
-        winMessage.textContent = `${winner} Wins!!!`;
 
-        console.log(`${winner} Wins!!!`);
-        // logic to put some gameover message over the gameboard 
+        if (winner == 'tie') return winMessage.innerHTML = `It's a <br> Tie!`;
+
+        winMessage.innerHTML = `${winner} <br> Wins!!!`;
     };
 
 })();
+
+

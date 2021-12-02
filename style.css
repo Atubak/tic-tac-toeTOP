@@ -53,6 +53,7 @@ h1 {
     width: 320px;
     height: 10px;
     border-radius: 5px;
+    user-select: none;
 
 }
 
@@ -68,6 +69,8 @@ h1 {
     width: 10px;
     height: 260px;
     border-radius: 5px;
+    user-select: none;
+
 }
 
 #barFour {
@@ -130,4 +133,35 @@ h1 {
 
 #replay:active {
     transform: translateY(3px);
+}
+
+
+/* player selection screen */
+#playerScreen {
+    position: absolute;
+    height: 300px;
+    width: 360px;
+    margin: auto;
+    padding: 30px 0px;
+    background-color: hsl(60, 56%, 91%);
+    color: hsl(60, 56%, 25%);
+    text-align: center;
+    line-height: 120%;
+    font-size: 20px;
+}
+
+.pickSymbol {
+    padding: 25px;
+    margin: 10px;
+    font-size: 50px;
+    user-select: none;
+}
+
+.pickSymbol:hover {
+    background-color: hsl(60, 56%, 71%);
+    border-radius: 5px;
+}
+
+.pickSymbol:active {
+    background-color: indianred;
 }

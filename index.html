@@ -12,6 +12,7 @@
 <body>
     <h1>Tic Tac Toe!</h1>
 
+    
     <div id='gameSection'>
         <div class='player' id="player1"></div>
         
@@ -25,12 +26,26 @@
             <div class="move" id="6"></div>
             <div class="move" id="7"></div>
             <div class="move" id="8"></div>
+            
             <div class='barH' id="barOne"></div>
             <div class='barH' id="barTwo"></div>
             <div class='barV' id="barThree"></div>
             <div class='barV' id="barFour"></div>
+            
             <div id="winMessage" class="">
                 <div id="replay">replay</div>
+            </div>
+           
+            <div id="playerScreen">
+                <label for="playerName">PLAYER NAME</label><br>
+                <input type="text" id="playerName" name="playerName"><br><br><br>
+
+                PICK<br><br><br>
+                <div id="pickSymbolDiv">
+                    <span class="pickSymbol" id="X">❌</span>
+                    <sup>OR</sup>
+                    <span class="pickSymbol" id="O">⭕</span>
+                </div>
             </div>
         </div>
 

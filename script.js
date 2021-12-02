@@ -1,19 +1,39 @@
-const playerFactory = (name, symbol, playerDesignation) => { 
-    //playerDesignation is supposed to connect the player object to either player1 or player2
-    return { name, playerDesignation, timesWon: 0, };
-};
 
 
 const playerSelectScreen = (function() {
     
     // variables
-
-    // cacheDOM
-
-    // events
-
-    // functions
+    let playerName = ""; 
+    let pickedSymbolDiv = "";
     
+    // cacheDOM
+    function _cacheDom() {
+        playerName = document.querySelector('#playerName').value;
+        pickedSymbolDiv = document.querySelector('#pickSymbolDiv');
+    };
+    _cacheDom();
+    
+    // events
+    pickedSymbolDiv.addEventListener('click', _addPlayer);
+    
+    // functions
+    function _addPlayer(e) {
+        _cacheDom();
+        
+        let pickedSymbol = e.target.textContent;
+        let playerDesignation = e.target.id;
+        
+        playerFactory(playerName, pickedSymbol, playerDesignation);
+        
+    };
+    
+
+
+    
+    const playerFactory = (name, symbol, playerDesignation) => { 
+        //playerDesignation is supposed to connect the player object to either player1 or player2
+        return { name, playerDesignation, timesWon: 0, };
+    };
 
 })();
 
@@ -80,6 +100,8 @@ const gameBoard = (function() {
             [2,4,6]
         ];
 
+        if (moveTally == 10) return _gameOver('tie');
+
         winningCombos.forEach((currentCombo) => {
             let currentCheck = [];
 
@@ -87,8 +109,6 @@ const gameBoard = (function() {
                 currentCheck.push(gameBoard.gameBoardArray[curComPosition])
             });
             
-            if (moveTally == 10) return _gameOver('tie');
-
             if (player1Win.toString() === currentCheck.toString()) {
                 _gameOver('player1');
             };
@@ -102,29 +122,30 @@ const gameBoard = (function() {
 
 
     function _gameOver(winner) {
-        gameBoardDiv.removeEventListener("click", _doMove);
-
+        
+        
+        // also needs a ++ to the win count of the player
         const winP = document.createElement('p');
-
-        // PRINTS 'ITS A TIE' 8 TIMES FOR SOME REASON
         
         if (winner == 'tie') {
-
             winP.innerHTML = `It's a <br> Tie!`;
             winMessage.insertBefore(winP, replayButton);
-            winMessage.className = 'show';
-        };
-
-        winP.innerHTML = `${winner} <br> Wins!!!`;
-        winMessage.insertBefore(winP, replayButton);
-        winMessage.className = 'show';
+            return winMessage.className = 'show';
+        } else {
+            winP.innerHTML = `${winner} <br> Wins!!!`;
+            winMessage.insertBefore(winP, replayButton);
+            return winMessage.className = 'show';
+        };  
 
     };
 
 
     function _resetGame () {
         winMessage.className = '';
-
+        winMessage.removeChild(winMessage.firstElementChild);
+        gameBoard.gameBoardArray = [];
+        moveTally = 1;
+        _render();
     };
 
 })();

@@ -1,3 +1,7 @@
+const playerFactory = (playerDesignation, name, symbol) => { 
+    //playerDesignation is supposed to connect the player object to either player1 or player2
+    return console.log(playerDesignation = { name, symbol, timesWon: 0, });
+};
 
 
 const playerSelectScreen = (function() {
@@ -23,17 +27,13 @@ const playerSelectScreen = (function() {
         let pickedSymbol = e.target.textContent;
         let playerDesignation = e.target.id;
         
-        playerFactory(playerName, pickedSymbol, playerDesignation);
+        playerFactory( playerDesignation, playerName, pickedSymbol);
         
     };
     
 
 
     
-    const playerFactory = (name, symbol, playerDesignation) => { 
-        //playerDesignation is supposed to connect the player object to either player1 or player2
-        return { name, playerDesignation, timesWon: 0, };
-    };
 
 })();
 

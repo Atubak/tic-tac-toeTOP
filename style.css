@@ -25,6 +25,15 @@ h1 {
     width: 200px;
     height: 280px;
     margin: 10px 10px;
+    color: hsl(60, 56%, 25%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.player span {
+    font-size: 50px;
 }
 
 #gameboard {
@@ -33,6 +42,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     position: relative;
+    
 }
 
 
@@ -148,6 +158,10 @@ h1 {
     text-align: center;
     line-height: 120%;
     font-size: 20px;
+}
+
+#playerScreen.hide {
+    display: none;
 }
 
 .pickSymbol {

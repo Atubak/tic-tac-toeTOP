@@ -1,7 +1,13 @@
-const playerFactory = (playerDesignation, name, symbol) => { 
+let player1 = {};
+let player2 = {};
+
+
+const playerFactory = (name, symbol) => { 
     //playerDesignation is supposed to connect the player object to either player1 or player2
-    return console.log(playerDesignation = { name, symbol, timesWon: 0, });
+    return {name, symbol, timesWon: 0};
 };
+
+
 
 
 const playerSelectScreen = (function() {
@@ -9,11 +15,15 @@ const playerSelectScreen = (function() {
     // variables
     let playerName = ""; 
     let pickedSymbolDiv = "";
+    let clickedCounter = 0;
     
     // cacheDOM
     function _cacheDom() {
-        playerName = document.querySelector('#playerName').value;
+        playerName = document.querySelector('#playerName');
         pickedSymbolDiv = document.querySelector('#pickSymbolDiv');
+        player1Section = document.querySelector('#player1');
+        player2Section = document.querySelector('#player2');
+        playerScreenDiv = document.querySelector('#playerScreen'); 
     };
     _cacheDom();
     
@@ -26,14 +36,53 @@ const playerSelectScreen = (function() {
         
         let pickedSymbol = e.target.textContent;
         let playerDesignation = e.target.id;
+       
+        playerDesignation === 'X' ? player1 = playerFactory(playerName.value, pickedSymbol) : player2 = playerFactory(playerName.value, pickedSymbol);
         
-        playerFactory( playerDesignation, playerName, pickedSymbol);
-        
+        playerName.value = '';
+
+        _insertPlayer();
     };
     
+    function _insertPlayer() {
+        player1Section.innerHTML = '';
+        player2Section.innerHTML = '';
 
+        const p1Header = document.createElement('h2');
+        const p2Header = document.createElement('h2');
+        const p1Symbol = document.createElement('span');
+        const p2Symbol = document.createElement('span');
+        const p1TW = document.createElement('p');
+        const p2TW = document.createElement('p');
 
-    
+        p1Header.textContent = player1.name;
+        p2Header.textContent = player2.name;
+        p1Symbol.textContent = player1.symbol;
+        p2Symbol.textContent = player2.symbol;
+        p1TW.textContent = `Won ${player1.timesWon} Times `;
+        p2TW.textContent = `Won ${player2.timesWon} Times `;
+              
+
+        player1Section.appendChild(p1Header);
+        player2Section.appendChild(p2Header);
+        player1Section.appendChild(p1Symbol);
+        player2Section.appendChild(p2Symbol);
+        player1Section.appendChild(p1TW);
+        player2Section.appendChild(p2TW);
+        
+        clickedCounter++;
+        console.log(clickedCounter);
+
+        if (clickedCounter >= 2 && Number.isInteger(clickedCounter % 2)) return _removePlayerSelection();
+    };
+
+    function _removePlayerSelection() {
+
+        if (!player1.name && !player2.name) return alert("Please fill in both players' names");
+        
+
+        playerScreenDiv.classList.toggle('hide')
+    };
 
 })();
 
@@ -110,10 +159,10 @@ const gameBoard = (function() {
             });
             
             if (player1Win.toString() === currentCheck.toString()) {
-                _gameOver('player1');
+                _gameOver(player1);
             };
             if (player2Win.toString() === currentCheck.toString()) {
-                _gameOver('player2')
+                _gameOver(player2);
             };
         });
 
@@ -132,8 +181,11 @@ const gameBoard = (function() {
             winMessage.insertBefore(winP, replayButton);
             return winMessage.className = 'show';
         } else {
-            winP.innerHTML = `${winner} <br> Wins!!!`;
+            winP.innerHTML = `${winner.name} <br> Wins!!!`;
             winMessage.insertBefore(winP, replayButton);
+            winner.timesWon++;
+            player1Div.lastElementChild.textContent = `Won ${player1.timesWon} Times`;
+            player2Div.lastElementChild.textContent = `Won ${player2.timesWon} Times`;
             return winMessage.className = 'show';
         };  
 
